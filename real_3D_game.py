@@ -3,7 +3,6 @@ import numpy
 import math
 import random
 
-#matrixes
 def matrix_move(pos):
     x, y, z=pos
     return numpy.array([
@@ -262,13 +261,18 @@ class Screen():
                 if self.snake[1]!=[self.snake[0][0]-1, self.snake[0][1]]:
                     self.kursor=[-1, 0]
             elif k[pygame.K_s]:
-                if self.snake[1]!=[self.snake[0][0]+1, self.snake[0][1]-1]:
+                if self.snake[1]!=[self.snake[0][0]+1, self.snake[0][1]]:
                     self.kursor=[1, 0]
             
             if l>1:
                 l=0
                 self.snake.insert(0, [self.snake[0][0]+self.kursor[0], self.snake[0][1]+self.kursor[1]])
-                self.snake.pop(len(self.snake)-1)
+                if self.snake[0][0]>9 or self.snake[0][1]>9 or self.snake[0][0]<=0 or self.snake[0][1]<=0 or self.snake[0] in self.snake[1:]:
+                    r=False
+                if self.snake[0][0]==self.apple[0] and self.snake[0][1]==self.apple[1]:
+                    self.apple=[random.randint(0, 9), random.randint(0, 9)]
+                else:
+                    self.snake.pop(len(self.snake)-1)
             
             self.create_object()
 
@@ -279,7 +283,7 @@ class Screen():
             pygame.display.flip()
             self.clock.tick()
 
-            l+=0.05
+            l+=0.04
         
         pygame.quit()
 
