@@ -4,6 +4,10 @@ import math
 import random
 
 #matrixes
+#fgdfgdfgdf
+#dfsdfsdfsd
+#sdfsdfsdfsd
+
 def matrix_move(pos):
     x, y, z=pos
     return numpy.array([
